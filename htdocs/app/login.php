@@ -25,7 +25,7 @@
 
                         <img class="mb-5" src="assets/logo1.png" alt="Boltchat logotipo" id="navLogo">
 
-                        <h5 class="mb-5">Autenticação</h5>
+                        <h5 class="mb-5">Login</h5>
 
                         <div class="form-outline mb-4">
                             <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />
@@ -37,13 +37,7 @@
                             <label class="form-label" for="typePasswordX-2">Senha</label>
                         </div>
 
-                        <!-- Checkbox -->
-                        <div class="form-check d-flex justify-content-start mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-                            <label class="form-check-label" for="form1Example3"> Lembrar senha </label>
-                        </div>
-
-                        <a href="../home/home.html">
+                        <a href="home.php">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
                         </a>
                     </div>
