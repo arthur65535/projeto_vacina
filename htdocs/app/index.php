@@ -1,3 +1,6 @@
 <?php
 
-echo("Olá mundo!");
+header("Location: login.php");
+exit();
+
+?>
