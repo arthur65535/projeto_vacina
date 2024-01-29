@@ -8,13 +8,14 @@ class Alergias
     // CONSULTAS SQL
 
     // INSERT
-
+    const SQL_INSERT_NOVA_ALERGIA = "INSERT INTO ALERGIAS (NOME) VALUES (:nome)";
     // UPDATE
-    
+    const SQL_UPDATE_ALERGIA = "UPDATE ALERGIAS SET NOME = :nome WHERE ID = :id";
     // DELETE
-    
+    const SQL_DELETE_ALERGIA = "DELETE FROM ALERGIAS WHERE ID = :id";
     // SELECT
-
+    const SQL_SELECT_ALERGIAS = "SELECT * FROM ALERGIAS";
+    const SQL_SELECT_ALERGIA = "SELECT * FROM ALERGIAS WHERE ID = :id";
     //----------------------------------------------------------------
     // VARIÁVEIS DE CLASSE E CONSTRUTOR
     private $pdoPGS;
@@ -24,13 +25,9 @@ class Alergias
     {
         $this->login = $login;
         try {
-            $this->pdoPGS = Connection::get()->connect();
+            $this->pdoPGS = Connection::connect();
         } catch (\Exception $e) {
-            return [
-                'ERRO' => true,
-                'MENSAGEM' => $e->getMessage(),
-                'DADOS' => []
-            ];
+            echo ("Erro ao conectar ao banco de dados: ". $e->getMessage());
         }
     }
 
@@ -56,6 +53,11 @@ class Alergias
         return $this->_getAlergia($id);
     }
 
+    public function delAlergia($id)
+    {
+        return $this->_delAlergia($id);
+    }
+
     // ---------------------------------------------------------------
     // FUNÇÕES PRIVADAS AUXILIARES
 
@@ -64,21 +66,148 @@ class Alergias
 
     private function _setAlergia($dados)
     {
+        try {
+            if (!isset($dados) || !is_array($dados)) {
+                throw new InvalidArgumentException("Dados invalidos.");
+            }
 
+            $stmt = $this->pdoPGS->prepare(self::SQL_INSERT_NOVA_ALERGIA);
+            $stmt->bindValue(':nome', strval($dados['nome']), PDO::PARAM_STR);
+
+            if (!$stmt->execute()){
+                throw new PDOException("Erro PDO. Detalhes: " . $stmt->errorInfo()[2]);
+            } else {
+                return [
+                    'ERRO' => false,
+                    'MENSAGEM' => 'Alergia cadastrada com sucesso.',
+                    'DADOS' => []
+                ];
+            }
+        } catch (Throwable $e){
+            return [
+                'ERRO' => true,
+                'MENSAGEM' => $e->getMessage(),
+                'DADOS' => []
+            ];
+        }
     }
 
     private function _uptAlergia($dados)
     {
+        try {
+            if (!isset($dados) || !is_array($dados)) {
+                throw new InvalidArgumentException("Dados invalidos.");
+            }
 
+            $stmt = $this->pdoPGS->prepare(self::SQL_UPDATE_ALERGIA);
+            $stmt->bindValue(':nome',           strval($dados['nome']), PDO::PARAM_STR);
+            $stmt->bindValue(':id',             intval($dados['id']), PDO::PARAM_INT);
+
+            if (!$stmt->execute()){
+                throw new PDOException("Erro PDO. Detalhes: " . $stmt->errorInfo()[2]);
+            } else {
+                return [
+                    'ERRO' => false,
+                    'MENSAGEM' => 'Alergia atualizada com sucesso.',
+                    'DADOS' => []
+                ];
+            }
+        } catch (Throwable $e){
+            return [
+                'ERRO' => true,
+                'MENSAGEM' => $e->getMessage(),
+                'DADOS' => []
+            ];
+        }
     }
 
     private function _getAlergias()
     {
+        try {
+            $stmt = $this->pdoPGS->query(self::SQL_SELECT_ALERGIAS);
+            $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            if (!empty($resultado)) {
+                return [
+                    'ERRO' => false,
+                    'MENSAGEM' => '',
+                    'DADOS' => $resultado
+                ];
+            } else {
+                return [
+                    'ERRO' => true,
+                    'MENSAGEM' => 'Nenhum registro de alergia encontrado.',
+                    'DADOS' => []
+                ];
+            }
+        } catch (Throwable $e){
+            return [
+                'ERRO' => true,
+                'MENSAGEM' => $e->getMessage(),
+                'DADOS' => []
+            ];
+        }
     }
 
     private function _getAlergia($id)
     {
+        try {
+            $stmt = $this->pdoPGS->prepare(self::SQL_SELECT_ALERGIA);
+            $stmt->bindValue(':id', intval($id), PDO::PARAM_INT);
+            
+            if (!$stmt->execute()){
+                throw new PDOException("Erro PDO. Detalhes: ". $stmt->errorInfo()[2]);
+            } else {
+                $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
 
+            if (!empty($resultado)) {
+                return [
+                    'ERRO' => false,
+                    'MENSAGEM' => '',
+                    'DADOS' => $resultado
+                ];
+            } else {
+                return [
+                    'ERRO' => true,
+                    'MENSAGEM' => 'Alergia nao encontrada.',
+                    'DADOS' => []
+                ];
+            }
+        } catch (Throwable $e){
+            return [
+                'ERRO' => true,
+                'MENSAGEM' => $e->getMessage(),
+                'DADOS' => []
+            ];
+        }
+    }
+
+    private function _delAlergia($dados)
+    {
+        try {
+            if (!isset($dados) ||!is_array($dados)) {
+                throw new InvalidArgumentException("Dados invalidos.");
+            }
+
+            $stmt = $this->pdoPGS->prepare(self::SQL_DELETE_ALERGIA);
+            $stmt->bindValue(':id', intval($dados['id']), PDO::PARAM_INT);
+
+            if (!$stmt->execute()) {
+                throw new PDOException("Erro PDO. Detalhes: ". $stmt->errorInfo()[2]);
+            } else {
+                return [
+                    'ERRO' => false,
+                    'MENSAGEM' => 'Alergia excluida com sucesso.',
+                    'DADOS' => []
+                ];
+            }
+        } catch (Throwable $e){
+            return [
+                'ERRO' => true,
+                'MENSAGEM' => $e->getMessage(),
+                'DADOS' => []
+            ];
+        }
     }
 }

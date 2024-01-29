@@ -26,13 +26,9 @@ class Usuarios
     {
         $this->login = $login;
         try {
-            $this->pdoPGS = Connection::get();
+            $this->pdoPGS = Connection::connect();
         } catch (\Exception $e) {
-            return [
-                'ERRO' => true,
-                'MENSAGEM' => $e->getMessage(),
-                'DADOS' => []
-            ];
+            echo ("Erro ao conectar ao banco de dados: ". $e->getMessage());
         }
     }
 
@@ -77,14 +73,14 @@ class Usuarios
             }
 
             $stmt = $this->pdoPGS->prepare(self::SQL_INSERT_NOVO_USUARIO);
-            $stmt->bindValue(':nome', $dados['nome'], PDO::PARAM_STR);
-            $stmt->bindValue(':data_nascimento', $dados['data_nascimento'], PDO::PARAM_STR);
-            $stmt->bindValue(':sexo', $dados['sexo'], PDO::PARAM_STR);
-            $stmt->bindValue(':logradouro', $dados['logradouro'], PDO::PARAM_STR);
-            $stmt->bindValue(':numero', intval($dados['numero']), PDO::PARAM_INT);
-            $stmt->bindValue(':setor', $dados['setor'], PDO::PARAM_STR);
-            $stmt->bindValue(':cidade', $dados['cidade'], PDO::PARAM_STR);
-            $stmt->bindValue(':uf', $dados['uf'], PDO::PARAM_STR);
+            $stmt->bindValue(':nome',               strval($dados['nome']), PDO::PARAM_STR);
+            $stmt->bindValue(':data_nascimento',    DateTime::createFromFormat('d/m/Y', $dados['data_nascimento'])->format('Y-m-d'));
+            $stmt->bindValue(':sexo',               strval($dados['sexo']), PDO::PARAM_STR);
+            $stmt->bindValue(':logradouro',         strval($dados['logradouro']), PDO::PARAM_STR);
+            $stmt->bindValue(':numero',             intval($dados['numero']), PDO::PARAM_INT);
+            $stmt->bindValue(':setor',              strval($dados['setor']), PDO::PARAM_STR);
+            $stmt->bindValue(':cidade',             strval($dados['cidade']), PDO::PARAM_STR);
+            $stmt->bindValue(':uf',                 strval($dados['uf']), PDO::PARAM_STR);
 
             if (!$stmt->execute()){
                 throw new PDOException("Erro PDO. Detalhes: " . $stmt->errorInfo()[2]);
@@ -113,11 +109,12 @@ class Usuarios
             }
 
             $stmt = $this->pdoPGS->prepare(self::SQL_UPDATE_USUARIO);
-            $stmt->bindValue(':logradouro', $dados['logradouro'], PDO::PARAM_STR);
-            $stmt->bindValue(':numero', intval($dados['numero']), PDO::PARAM_INT);
-            $stmt->bindValue(':setor', $dados['setor'], PDO::PARAM_STR);
-            $stmt->bindValue(':cidade', $dados['cidade'], PDO::PARAM_STR);
-            $stmt->bindValue(':uf', $dados['uf'], PDO::PARAM_STR);
+            $stmt->bindValue(':logradouro',     strval($dados['logradouro']), PDO::PARAM_STR);
+            $stmt->bindValue(':numero',         intval($dados['numero']), PDO::PARAM_INT);
+            $stmt->bindValue(':setor',          strval($dados['setor']), PDO::PARAM_STR);
+            $stmt->bindValue(':cidade',         strval($dados['cidade']), PDO::PARAM_STR);
+            $stmt->bindValue(':uf',             strval($dados['uf']), PDO::PARAM_STR);
+            $stmt->bindValue(':id',             intval($dados['id']), PDO::PARAM_INT);
 
             if (!$stmt->execute()){
                 throw new PDOException("Erro PDO. Detalhes: " . $stmt->errorInfo()[2]);

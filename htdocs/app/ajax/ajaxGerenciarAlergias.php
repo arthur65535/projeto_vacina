@@ -15,7 +15,8 @@ $tipoRequisicao = is_null($getRequisicao) ? $postRequisicao : $getRequisicao;
 session_start();
 
 // Obtém o login do usuário a partir da sessão.
-$login = $_SESSION['login'];
+// $login = $_SESSION['login'];
+$login = 'Arthur';
 
 // Verifica se o login está vazio (sessão perdida) e retorna uma mensagem de erro, se necessário.
 if (empty($login)) {
@@ -40,6 +41,9 @@ switch ($tipoRequisicao) {
         break;
     case 'get-alergia':
         echo json_encode($alergias->getAlergia($_GET['id']));
+        break;
+    case 'del-alergia':
+        echo json_encode($alergias->delAlergia($_POST));
         break;
     default:
         echo json_encode("Erro AJAX: rota não encontrada.");
