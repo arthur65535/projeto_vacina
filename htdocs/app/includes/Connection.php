@@ -2,21 +2,23 @@
 
 class Connection
 {
-    public string $db = "postgres";
-    public string $host = "localhost";
-    public string $user = "postgres";
-    public string $pass = "12345";
-    public string $dbname = "postgres";
-    public int $port = 5432;
+    const db = "postgres";
+    const host = "localhost";
+    const user = "postgres";
+    const pass = "postgres";
+    const dbname = "postgres";
+    const port = 5432;
     public object $pdo;
 
-    public function connect()
+    public static function connect()
     {
         try {
-            $this->pdo = new PDO($this->db . ':host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dbname, $this->user, $this->pass);
+            $conStr = sprintf("pgsql:host=%s;port=%d;dbname=%s;user=%s;password=%s", self::host, self::port, self::dbname, self::user, self::pass);
+
+            self::$pdo = new PDO($conStr);
 
             echo ("Conexão realizada com sucesso.");
-            return $this->pdo;
+            return self::$pdo;
         } catch (PDOException $e) {
             echo ("Erro de conexão: " . $e->getMessage());
         }
@@ -24,6 +26,6 @@ class Connection
     
     public static function get()
     {
-        return new self();
+        return self::connect();
     }
 }
