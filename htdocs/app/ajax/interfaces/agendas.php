@@ -8,29 +8,24 @@ class Agendas
     // CONSULTAS SQL
 
     // INSERT
-
+    const SQL_INSERT_NOVA_AGENDA = "INSERT INTO AGENDAS (DATA, HORA, SITUACAO, DATA_SITUACAO, OBSERVACOES) VALUES (:data, :hora, :situacao, :data_situacao, :observacoes)";
     // UPDATE
-    
+    const SQL_UPDATE_AGENDA = "UPDATE AGENDAS SET NOME = :nome WHERE ID = :id";
     // DELETE
-    
+    const SQL_DELETE_AGENDA = "DELETE FROM AGENDAS WHERE ID = :id";
     // SELECT
-
+    const SQL_SELECT_AGENDAS = "SELECT * FROM AGENDAS";
+    const SQL_SELECT_AGENDA = "SELECT * FROM AGENDAS WHERE ID = :id";
     //----------------------------------------------------------------
     // VARIÁVEIS DE CLASSE E CONSTRUTOR
     private $pdoPGS;
-    private $login;
 
-    public function __construct($login)
+    public function __construct()
     {
-        $this->login = $login;
         try {
-            $this->pdoPGS = Connection::get()->connect();
+            $this->pdoPGS = Connection::connect();
         } catch (\Exception $e) {
-            return [
-                'ERRO' => true,
-                'MENSAGEM' => $e->getMessage(),
-                'DADOS' => []
-            ];
+            echo ("Erro ao conectar ao banco de dados: ". $e->getMessage());
         }
     }
 
@@ -56,6 +51,10 @@ class Agendas
         return $this->_getAgenda($id);
     }
 
+    public function delAgenda($id)
+    {
+        return $this->_delAgenda($id);
+    }
     // ---------------------------------------------------------------
     // FUNÇÕES PRIVADAS AUXILIARES
 
@@ -78,6 +77,11 @@ class Agendas
     }
 
     private function _getAgenda($id)
+    {
+
+    }
+
+    private function _delAgenda($id)
     {
 
     }

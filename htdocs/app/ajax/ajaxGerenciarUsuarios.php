@@ -11,22 +11,7 @@ $postRequisicao = isset($_GET['tipo']) && !empty($_GET['tipo']) ? $_GET['tipo'] 
 // Determina o tipo de requisição com base nos parâmetros encontrados.
 $tipoRequisicao = is_null($getRequisicao) ? $postRequisicao : $getRequisicao;
 
-// Inicia a sessão, se ainda não estiver iniciada.
-session_start();
-
-// Obtém o login do usuário a partir da sessão.
-// $login = $_SESSION['login'];
-$login = 'Arthur';
-
-// Verifica se o login está vazio (sessão perdida) e retorna uma mensagem de erro, se necessário.
-if (empty($login)) {
-    $retorno = array("error" => "session", "message" => "Sessão perdida, faça o login novamente.");
-    echo json_encode($retorno);
-    exit;
-}
-
-// Cria uma instância de Usuarios com o login do usuário.
-$usuarios = new Usuarios($login);
+$usuarios = new Usuarios();
 
 // Executa diferentes ações com base no tipo de requisição.
 switch ($tipoRequisicao) {

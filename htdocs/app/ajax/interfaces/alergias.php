@@ -19,11 +19,9 @@ class Alergias
     //----------------------------------------------------------------
     // VARIÁVEIS DE CLASSE E CONSTRUTOR
     private $pdoPGS;
-    private $login;
 
-    public function __construct($login)
+    public function __construct()
     {
-        $this->login = $login;
         try {
             $this->pdoPGS = Connection::connect();
         } catch (\Exception $e) {
