@@ -35,6 +35,9 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
+                        <a class="nav-link" href="home.php">Home</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="gerenciarAgendas.php">Gerenciar Agendas</a>
                     </li>
                     <li class="nav-item">
@@ -64,8 +67,103 @@
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="dow">
-                    <h4>Visão geral</h4>
+                <div class="col-md-3 mb-4">
+                    <!-- Quadrado 1 -->
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Cadastrar Usu&aacute;rio</h5>
+                            <form id="form-usuario">
+                                <div class="mb-3">
+                                    <input type="text" maxlength="60" class="form-control" id="nome" name="nome" placeholder="Nome"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="data_nascimento" name="data_nascimento" placeholder="Data de Nascimento" onfocus="(this.type='date')">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" maxlength="1" class="form-control" id="sexo" name="sexo" placeholder="Sexo" />
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" maxlength="60" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="numero" name="numero" placeholder="Número" />
+                                </div>                                    <div class="mb-3">
+                                    <input type="text" maxlength="40" class="form-control" id="setor" name="setor" placeholder="Setor" />
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" maxlength="40" class="form-control" id="cidade" name="cidade" placeholder="Cidade" />
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" maxlength="2" class="form-control" id="uf" name="uf" placeholder="UF" style="text-transform:uppercase"/>
+                                </div>
+                                <button type="submit" id="botao-cadastrar-usuario" class="btn btn-primary">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <!-- Quadrado 2 -->
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Agendar Vacinação</h5>
+                            <form id="form-agenda">
+                                <div class="mb-3">
+                                    <label for="dataAgen" class="form-label">Data da Vacinação</label>
+                                    <input type="date" class="form-control" id="dataAgen">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="vacina" class="form-label">Vacina</label>
+                                    <select class="form-select" id="listar-vacina" onclick="carregarDadosVacina()">
+                                        <option value="">Selecione uma vacina</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <!-- Cadastrar Alergias -->
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Cadastrar Alergia</h5>
+                            <form id="form-alergia">
+                                <div class="mb-3">
+                                    <input type="text" maxlength="40" class="form-control" id="nomealer" name="nome" placeholder="Título"/>
+                                </div>
+                                <button type="submit" id="botao-cadastrar-alergia" class="btn btn-primary">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-4">
+                    <!-- Cadastrar Vacinas -->
+                    <div class="card rounded">
+                        <div class="card-body">
+                            <h5 class="card-title">Cadastrar Vacina</h5>
+                            <form id="form-vacina">
+                                <div class="mb-3">
+                                    <input type="text" maxlength="60" class="form-control" id="nomevac" name="titulo" placeholder="Título"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" maxlength="200" class="form-control" id="descvac" name="descricao" placeholder="Descrição"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="dosesvac" name="doses" placeholder="Doses"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="periovac" name="periodicidade" placeholder="Periodicidade"/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" id="intervac" name="intervalo" placeholder="Intervalo"/>
+                                </div>
+                                <button type="submit" id="botao-cadastrar-vacina" class="btn btn-primary">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,7 +171,38 @@
 
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/home.js"></script>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script> -->
+
+    <script src="./js/home.js">
+
+
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+    <script id="template-agenda-vacina" type="text/template">
+        <table class="table">
+            <tbody>
+                {{#DADOS}}
+                    <tr>
+                        <td>{{ID}}</td>
+                        <td>{{NOME}}</td>
+                    </tr>
+                {{/DADOS}}
+            </tbody>
+        </table>
+    </script>
+    <!-- ---------------------------------------------------------------------------------------------------- -->
+
+
+
+    
+<script type="text/javascript">
+	
+    $(document).ready(function() {
+        // INICIALIZANDO
+        home._start();  
+    });  
+</script>
+    
 </body>
 
 </html>

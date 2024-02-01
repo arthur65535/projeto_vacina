@@ -69,10 +69,10 @@ class Usuarios
             if (!isset($dados) || !is_array($dados)) {
                 throw new InvalidArgumentException("Dados invalidos.");
             }
-
+            
             $stmt = $this->pdoPGS->prepare(self::SQL_INSERT_NOVO_USUARIO);
             $stmt->bindValue(':nome',               strval($dados['nome']), PDO::PARAM_STR);
-            $stmt->bindValue(':data_nascimento',    DateTime::createFromFormat('d/m/Y', $dados['data_nascimento'])->format('Y-m-d'));
+            $stmt->bindValue(':data_nascimento',    DateTime::createFromFormat('Y-m-d', strval($dados['data_nascimento']))->format('Y-m-d'));
             $stmt->bindValue(':sexo',               strval($dados['sexo']), PDO::PARAM_STR);
             $stmt->bindValue(':logradouro',         strval($dados['logradouro']), PDO::PARAM_STR);
             $stmt->bindValue(':numero',             intval($dados['numero']), PDO::PARAM_INT);
