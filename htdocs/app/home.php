@@ -175,25 +175,6 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script> -->
 
     <script src="./js/home.js">
-
-
-    <!-- ---------------------------------------------------------------------------------------------------- -->
-    <script id="template-agenda-vacina" type="text/template">
-        <table class="table">
-            <tbody>
-                {{#DADOS}}
-                    <tr>
-                        <td>{{ID}}</td>
-                        <td>{{NOME}}</td>
-                    </tr>
-                {{/DADOS}}
-            </tbody>
-        </table>
-    </script>
-    <!-- ---------------------------------------------------------------------------------------------------- -->
-
-
-
     
 <script type="text/javascript">
 	

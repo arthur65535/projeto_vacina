@@ -9,8 +9,9 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="icon" href="assets/icon1.png">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/datatables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 
 </head>
 
@@ -34,7 +35,7 @@
                 </a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="home.php">Home</a>
                     </li>
                     <li class="nav-item">
@@ -54,7 +55,7 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-            <a href="logout.php" class="btn btn-outline-success btn-sm">Sair</a>
+                <a href="logout.php" class="btn btn-outline-success btn-sm">Sair</a>
             </div>
             <!-- Right elements -->
         </div>
@@ -66,7 +67,25 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="dow">
-                    <h4>Gerenciar Vacinas</h4>
+                    <div id="wrapper">
+                        <div id="page-wrapper" style=" padding-bottom:100px">
+                            <div class="row">
+                                <br>
+                                <div class="col-lg-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h4>Gerenciar Vacinas</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="col-md-12">
+                                                <div id="container-tabela-vacinas"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +93,48 @@
 
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-1.13.6/datatables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/gerenciarVacinas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- SCRIPT TEMPLATE TABELA DE VACINAS -->
+    <script type="text/template" id="template-tabela-vacinas">
+    <table id="tabela-vacinas" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th style="text-align: center">ID</th>
+                    <th style="text-align: center">Título</th>
+                    <th style="text-align: center">Descrição</th>
+                    <th style="text-align: center">Doses</th>
+                    <th style="text-align: center">Periodicidade</th>
+                    <th style="text-align: center">Intervalo</th>
+                    <th style="text-align: center">A&ccedil;&otilde;es</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {{#DADOS}}
+                <tr data-id="{{id}}" data-nome="{{titulo}}">
+                    <td style="text-align: center">{{titulo}}</td>
+                    <td style="text-align: center">{{descricao}}</td>
+                    <td style="text-align: center">{{doses}}</td>
+                    <td style="text-align: center">{{periodicidade}}</td>
+                    <td style="text-align: center">{{intervalo}}</td>
+                    <td style="text-align: center">
+                        <button type="button" class="btn btn-warning" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Editar Vacina"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger" data-toggle="tooltip" data-trigger="hover" data-placement="bottom" title="Deletar Vacina"><i class="fa fa-close"></i></button>
+                    </td>
+                </tr>
+            {{/DADOS}}
+            </tbody>
+        </table>
+    </script>
+
+    <script src="./js/gerenciarVacinas.js" type="module">
+        $(document).ready(function () {
+            // INICIALIZANDO
+            gerenciarVacinas._start();
+        });  
+    </script>
 </body>
 
 </html>
