@@ -1,0 +1,501 @@
+{
+	"info": {
+		"_postman_id": "431afc16-b324-485a-9065-fae76dfc2001",
+		"name": "Projeto Vacina",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21764250"
+	},
+	"item": [
+		{
+			"name": "set-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "set-usuario",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Fernanda",
+							"type": "text"
+						},
+						{
+							"key": "data_nascimento",
+							"value": "04/05/2001",
+							"type": "text"
+						},
+						{
+							"key": "sexo",
+							"value": "F",
+							"type": "text"
+						},
+						{
+							"key": "logradouro",
+							"value": "Av. Nada",
+							"type": "text"
+						},
+						{
+							"key": "numero",
+							"value": "94",
+							"type": "text"
+						},
+						{
+							"key": "setor",
+							"value": "St. Capuava",
+							"type": "text"
+						},
+						{
+							"key": "cidade",
+							"value": "Goiânia",
+							"type": "text"
+						},
+						{
+							"key": "uf",
+							"value": "GO",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarUsuarios.php?tipo=set-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarUsuarios.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "set-usuario"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set-alergia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "set-alergia",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarAlergias.php?tipo=set-alergia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarAlergias.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "set-alergia"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "del-usuario",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarUsuarios.php?tipo=del-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarUsuarios.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "del-usuario"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "del-alergia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "del-alergia",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarAlergias.php?tipo=del-alergia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarAlergias.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "del-alergia"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upt-usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "upt-usuario",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "logradouro",
+							"value": "Av. Nada",
+							"type": "text"
+						},
+						{
+							"key": "numero",
+							"value": "94",
+							"type": "text"
+						},
+						{
+							"key": "setor",
+							"value": "St. Capuava",
+							"type": "text"
+						},
+						{
+							"key": "cidade",
+							"value": "Goiânia",
+							"type": "text"
+						},
+						{
+							"key": "uf",
+							"value": "GO",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarUsuarios.php?tipo=upt-usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarUsuarios.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "upt-usuario"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upt-alergia",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "tipo",
+							"value": "upt-alergia",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Leite de bode",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarAlergias.php?tipo=upt-alergia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarAlergias.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "upt-alergia"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-usuarios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarUsuarios.php?tipo=get-usuarios",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarUsuarios.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-usuarios"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-alergias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarAlergias.php?tipo=get-alergias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarAlergias.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-alergias"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-usuario",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarUsuarios.php?tipo=get-usuario&id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarUsuarios.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-usuario"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-alergia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarAlergias.php?tipo=get-alergia&id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarAlergias.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-alergia"
+						},
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-vacina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarVacinas.php?tipo=get-vacina&id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarVacinas.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-vacina"
+						},
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-vacinas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/htdocs/app/ajax/ajaxGerenciarVacinas.php?tipo=get-vacinas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"htdocs",
+						"app",
+						"ajax",
+						"ajaxGerenciarVacinas.php"
+					],
+					"query": [
+						{
+							"key": "tipo",
+							"value": "get-vacinas"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
